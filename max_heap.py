@@ -4,18 +4,18 @@ def max_heapify(A,i):
     r = 2*(i+1)-1
     if l <= len(A) and A[l]>A[i]:
         largest = l
-    else largest = A[i]
+    else: largest = i
     if r <= len(A) and A[r]>A[i]:
         largest = r
     if largest != i:
         A[i] = A[largest]
-        retrun max_heapify(A,largest)
+        return max_heapify(A,largest)
 
 
 
 def build_maxheap(A):
     '''to product max heap from unordered array'''
-    for i in range (len(A//2-1,0,-1)):
+    for i in range (len(A)//2,0,-1):
         ans = max_heapify(A,i)
         return ans
 
