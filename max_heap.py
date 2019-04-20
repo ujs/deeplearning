@@ -1,7 +1,7 @@
 def max_heapify(A,i):
     '''to hangle single violation only'''
-    l = 2*(i+1)-1
-    r = 2*(i+1)-1
+    l = (i*2)+1
+    r = (i+1)*2
     if l <= len(A) and A[l]>A[i]:
         largest = l
     else: largest = i
@@ -9,16 +9,16 @@ def max_heapify(A,i):
         largest = r
     if largest != i:
         A[i] = A[largest]
-        return max_heapify(A,largest)
+    max_heapify(A,largest)
+    return None
 
 
 
 def build_maxheap(A):
     '''to product max heap from unordered array'''
-    for i in range (len(A)//2,0,-1):
-        ans = max_heapify(A,i)
-        return ans
-
+    for i in range ((len(A)-2)//2,0,-1):
+        return max_heapify(A,i)
+        
 
 def heap_sort(A):
     '''to sort a max heap'''
@@ -29,10 +29,9 @@ def heap_sort(A):
         swap = A[i]
         A[i] = A[0]
         A[0] = swap
-        ans.append(A[i])
 
         max_heapify(A,0)
-        return ans
+    return A
 
 
 
