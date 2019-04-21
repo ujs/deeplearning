@@ -23,16 +23,19 @@ def build_maxheap(A):
 
 def heap_sort(A):
     '''to sort a max heap'''
-    ans = []
     build_maxheap(A)
-    k = len(A)
-    for i in range (k-1,0,-1):  #to swap the first and last element of the max heap
-        swap = A[i]
-        A[i] = A[0]
-        A[0] = swap
+    end = len(A)
+    ans = []
+    for i in range (end-1,-1,-1):  #to swap the first and last element of the max heap
+        A[0],A[i] = A[i], A[0]
+        ans.append(A[i])
+        A = A[:-1]
 
         max_heapify(A,0)
-    return A
+    return ans
+
+
+
 
 #build_maxheap([4,1,3,2,16,9,10,14,8,7])
 
