@@ -1,3 +1,6 @@
+
+#Class Begins
+
 class PeakMatrix(object):
     """A class to represent an array in peak finding problem
     """
@@ -48,3 +51,17 @@ class PeakMatrix(object):
          (strRow, strCol, nrow, ncol) = bounds
          newBounds = (self.startRow+strRow, self.startCol+strCol, nrow, ncol)
          return PeakMatrix(self.array, newBounds, startRow, startCol, numRow, numCol)
+
+
+#End of class
+
+#Algorithm for peak finding. Divide and Conquer recursive approach
+#RUNTIME O(clg(r)), wherer c- number of columns, r- number of rows.
+
+def peakAlgo(array):
+    mid = array.numCol//2
+    location = max(array[mid])
+    if location.isPeak == True: return location
+    else:
+        array = subProblem((#4 arguments))
+        return peakAlgo(array)
