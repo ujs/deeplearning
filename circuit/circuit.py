@@ -368,52 +368,9 @@ class PriorityQueue:
 
 
 
-    def left(i):
-        """"Left child of given index. Runtime- O(1)"""
-        return 2*i + 1
-
-    def right(i):
-        """"Right child of given index. Runtime- O(1)"""
-        return 2*i + 2
-
-    def min_heapify(self, i):
-        """"Maintains min heap property for given index. Runtime- O(lg(n))"""
-        l= left (i)
-        r= right(i)
-        if self.heap[l] < self.heap[i]: smallest = l
-        else smallest = i
-        if self.heap[r] < self.heap[smallest]: smallest = r
-        if smallest != i:
-            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
-            min_heapify(Array, smallest)
-
-    def build_min_heap(self):
-        """"Produces min heap from an unordered input array. Runtime- O(n)"""
-        for i in range(self.heap.len/2+1, -1, -1):
-            min_heapify(self.heap,i)
-
-    def heapsort(self):
-        """Sorts an array in place. Runtime- O(nlog(n))"""
-        build_min_heap(self.heap)
-        sorted_heap = [None]
-        for i in range (self.heap.len, 0, -1):
-            self.heap[0], self.heap[i] = self.heap[i], self.heap[0]
-            sorted_array.append(self.heap[i])
-            self.heap.remove(self.heap[i])
-            min_heapify (self.heap, 0)
-
-
-    def append(self, key):
-        """Inserts an element in the priority queue."""
-        if key is None:
-            raise ValueError('Cannot insert None in the queue')
-        self.heap.append(key)
-        self.heap.heapsort()
-
-
     def min(self):
         """The smallest element in the queue/array."""
-        return self.heap[0]
+        return self.heap[1]
 
     def pop(self):
         """Removes the minimum element in the queue.
@@ -421,8 +378,28 @@ class PriorityQueue:
         Returns:
             The value of the removed element.
         """
-        heap = heapsort(self.heap)
-        popped_key = heap.pop(heap[0])
+        heap = self.heap
+        popped_key = heap[1]
+        if len(heap)==2: return heap.pop()
+        heap[1] = key = heap.pop()
+        i = 1
+        while True:
+            left = i * 2
+            if len(heap) <= left:
+                break
+            left_key = heap[left]
+            right = i * 2 + 1
+            right_key = right < len(heap) and heap[right]
+            if right_key and right_key < left_key:
+                child_key = right_key
+                child = right
+            else:
+                child_key = left_key
+                child = left
+            if key <= child_key:
+                break
+            self.heap[i], self.heap[child] = child_key, key
+            i = child
         return popped_key
 
 
