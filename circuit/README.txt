@@ -1,4 +1,4 @@
-Circuit Simulation code for MIT 6.006 Fall 2011 PS2
+MIT 6.006
 
 The code distribution contains the following files:
   * circuit.py - implementation of the circuit simulator
