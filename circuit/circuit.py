@@ -349,11 +349,24 @@ class PriorityQueue:
 
     def __len__(self):
         # Number of elements in the queue.
-        return len(self.heap)
+        return len(self.heap) - 1
 
-    def parent(i):
-        """"Parent node of given index. Runtime- O(1)"""
-        return (i-1)//2
+    def append (self, key):
+        """"Inserts an element in the priority queque- O(lg(n))
+        note- goal of this method is to ensure that the key's parent is always less that it"""
+
+
+        i = len(self.heap)
+        self.heap.append(key)
+
+        while i>1:
+            parent = i//2
+            if key < self.heap[parent]:
+                self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
+                i = parent
+            else: break
+
+
 
     def left(i):
         """"Left child of given index. Runtime- O(1)"""
