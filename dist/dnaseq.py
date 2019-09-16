@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 
 import unittest
-import * from dnaseqlib 
+import * from dnaseqlib
 
 ### Utility classes ###
 
@@ -10,20 +10,40 @@ class Multidict:
     # Initializes a new multi-value dictionary, and adds any key-value
     # 2-tuples in the iterable sequence pairs to the data structure.
     def __init__(self, pairs=[]):
-        raise Exception("Not implemented!")
+        self.table = dict()
+        for pair in pairs:
+            self.put(pair[0],pair[1])
     # Associates the value v with the key k.
     def put(self, k, v):
-        raise Exception("Not implemented!")
+        if k in self.table:
+            self.table[k].append(v)
+        else:
+            self.table[k] = v
     # Gets any values that have been associated with the key k; or, if
     # none have been, returns an empty sequence.
     def get(self, k):
-        raise Exception("Not implemented!")
+        try:
+            return self.table[k]
+        except KeyError:
+            return []
 
 # Given a sequence of nucleotides, return all k-length subsequences
 # and their hashes.  (What else do you need to know about each
 # subsequence?)
 def subsequenceHashes(seq, k):
-    raise Exception("Not implemented!")
+    try:
+        assert k>0
+        subseq = ''
+        for i in range(0,k):
+            subseq += seq.next()
+        rh = RollingHash()
+        pos = 0
+
+    except StopIteration:
+        return
+
+
+
 
 # Similar to subsequenceHashes(), but returns one k-length subsequence
 # every m nucleotides.  (This will be useful when you try to use two
@@ -36,7 +56,16 @@ def intervalSubsequenceHashes(seq, k, m):
 # that return nucleotides.  The table is built by computing one hash
 # every m nucleotides (for m >= k).
 def getExactSubmatches(a, b, k, m):
-    raise Exception("Not implemented!")
+    seqtable = Multidict(subsequences(a,k))
+    for hashval, (bpos,bseq) in subsequence (b,k):
+        for apos,aseq in seqtable.get(hashval):
+            if bseq != saeq:
+                continue
+            yield (apos, bpos)
+    return
+
+
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
