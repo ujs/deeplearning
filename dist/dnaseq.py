@@ -1,7 +1,9 @@
 #!/usr/bin/env python2.7
 
 import unittest
-import * from dnaseqlib
+import sys
+
+import dnaseqlib
 
 ### Utility classes ###
 
@@ -96,4 +98,4 @@ if __name__ == '__main__':
     # filename of sequence A, 5) the filename of sequence B, 6) k, the
     # subsequence size, and 7) m, the sampling interval for sequence
     # A.
-    compareSequences(getExactSubmatches, sys.argv[3], (500,500), sys.argv[1], sys.argv[2], 8, 100)
+    #compareSequences(getExactSubmatches, sys.argv[3], (500,500), sys.argv[1], sys.argv[2], 8, 100)

@@ -1,5 +1,6 @@
-from dnaseq import *
-
+import dnaseq
+import unittest
+import dnaseqlib
 ### Testing ###
 
 class TestRollingHash(unittest.TestCase):
