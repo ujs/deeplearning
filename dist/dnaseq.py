@@ -35,10 +35,15 @@ def subsequenceHashes(seq, k):
         assert k>0
         subseq = ''
         for i in range(0,k):
-            subseq += seq.next()
-        rh = RollingHash()
+            subseq += seq[i]
+        rh = RollingHash(subseq)
         pos = 0
-
+        while True:
+            yield (rh.hash(),(pos,subseq))
+            previtm = subseq[0]
+            subseq = seq[pos+1:pos+k+1]
+            rh.slide(previtm, subseq)
+            pos += 1
     except StopIteration:
         return
 
@@ -49,17 +54,30 @@ def subsequenceHashes(seq, k):
 # every m nucleotides.  (This will be useful when you try to use two
 # whole data files.)
 def intervalSubsequenceHashes(seq, k, m):
-    raise Exception("Not implemented!")
+    try:
+        assert m >= k
+        subseq = ''
+        for i in range(0,k):
+            subseq += seq[i]
+        rh = RollingHash(subseq)
+        pos = 0
+        while True:
+            yield (rh.hash(),(pos,subseq))
+            pos += m
+            subseq = seq[pos:pos+k]
+            rh = RollingHash(subseq)
+    except StopIteration:
+        return
 
 # Searches for commonalities between sequences a and b by comparing
 # subsequences of length k.  The sequences a and b should be iterators
 # that return nucleotides.  The table is built by computing one hash
 # every m nucleotides (for m >= k).
 def getExactSubmatches(a, b, k, m):
-    seqtable = Multidict(subsequences(a,k))
+    seqtable = Multidict(intervalSubsequenceHashes(a,k))
     for hashval, (bpos,bseq) in subsequence (b,k):
         for apos,aseq in seqtable.get(hashval):
-            if bseq != saeq:
+            if bseq != aseq:
                 continue
             yield (apos, bpos)
     return
