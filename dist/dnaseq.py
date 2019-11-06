@@ -3,6 +3,7 @@
 import unittest
 import sys
 
+
 import dnaseqlib
 
 ### Utility classes ###

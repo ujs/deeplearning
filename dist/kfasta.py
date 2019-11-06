@@ -64,5 +64,5 @@ class TestKFASTA(unittest.TestCase):
             print (subseq)
             i += 1
         self.assertTrue(24 == i)
-#if __name__ == '__main__':
-#    unittest.main()
+if __name__ == '__main__':
+    unittest.main()

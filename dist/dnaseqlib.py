@@ -1,6 +1,7 @@
 import sys
 import math
 import kfasta
+import unittest
 from array import array
 try:
     from PIL import Image
