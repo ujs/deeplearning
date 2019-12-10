@@ -181,9 +181,9 @@ class KNearestNeighbor(object):
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            freq_count = np.bincount(closest_y)
-            highest_freq_index = np.argmax(freq_count)
-            y_pred[i] = highest_freq_index
+            #freq_count = np.bincount(closest_y)
+            #highest_freq_index = np.argmax(freq_count)
+            y_pred[i] = np.asscalar(stats.mode(closest_y)[0])
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
