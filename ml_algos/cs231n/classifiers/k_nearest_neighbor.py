@@ -86,7 +86,7 @@ class KNearestNeighbor(object):
                 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
-    def compute_distances_one_loop(self, X):
+    def compute_distances_one_loop(self, X,X_train):
         """
         Compute the distance between each test point in X and each training point
         in self.X_train using a single loop over the test data.
@@ -105,12 +105,12 @@ class KNearestNeighbor(object):
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            pass
+            dists[i,:] = np.sqrt(np.sum((X[i]-X_train)**2, axis = 1))
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
-    def compute_distances_no_loops(self, X):
+    def compute_distances_no_loops(self, X, X_train):
         """
         Compute the distance between each test point in X and each training point
         in self.X_train using no explicit loops.
@@ -134,8 +134,12 @@ class KNearestNeighbor(object):
         #       and two broadcast sums.                                         #
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-        pass
+        
+        X_train_sq = np.sum(X_train**2,axis = 1)
+        X_sq = np.sum(X**2, axis = 1)
+        dot_product = np.dot(X, X_train.T)
+         
+        dists = np.sqrt(X_sq[:, np.newaxis] + X_train_sq - 2 * dot_product)
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
@@ -181,8 +185,7 @@ class KNearestNeighbor(object):
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            #freq_count = np.bincount(closest_y)
-            #highest_freq_index = np.argmax(freq_count)
+          
             y_pred[i] = np.asscalar(stats.mode(closest_y)[0])
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
