@@ -38,7 +38,7 @@ def svm_loss_naive(W, X, y, reg):
             if margin > 0:
                 loss += margin
                 dW[:,y[i]] -= X[i,:].T
-                
+                dW[:,j] += X[i,:].T
                 
             
                 
