@@ -1,7 +1,6 @@
 from builtins import range
 import numpy as np
 from random import shuffle
-#from past.builtins import xrange
 from builtins import range
 
 def svm_loss_naive(W, X, y, reg):
@@ -88,7 +87,7 @@ def svm_loss_vectorized(W, X, y, reg):
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     scores = X.dot(W)
     correct_class_score = scores[:,y]
-    loss = (np.sum(np.maximum(0,scores - correct_class_score+1)),axis = 1)
+    #loss = (np.sum(np.maximum(0,scores - correct_class_score+1)),axis = 1)
     
     loss = np.sum(loss)/num_train
     
