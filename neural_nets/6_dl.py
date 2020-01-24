@@ -10,4 +10,4 @@ results = np.zeros(shape=(len(samples),max_length,max(token_index.values()) + 1)
 for i, sample in enumerate(samples):
     for j, word in list(enumerate(sample.split()))[:max_length]:
         index = token_index.get(word)
-        results[i, j, index] = 1.
+        results[i, j, index] = 
