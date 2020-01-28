@@ -1,3 +1,5 @@
+#Naive CNN
+
 from keras import layers
 from keras import models
 
@@ -13,3 +15,19 @@ model.add(layers.Dense(64, activation = 'relu'))
 model.add(layers.Dense(10, activation = 'softmax'))
 
 model.summary()
+
+# MNIST data preprocessing
+
+from keras.datasets import MNIST
+from keras.utils import to_categorical
+
+(train_images, train_labels) , (test_images, test_labels) = mnist.load_data()
+
+train_images = train_images.reshape((60000,28,28,1))
+train_images = train_images.astype(float64)/255
+
+test_images = test_images_images.reshape((10000,28,28,1))
+test_images = test_images.astype(float64)/255
+
+train_lables = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)
