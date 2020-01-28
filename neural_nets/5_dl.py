@@ -31,3 +31,8 @@ test_images = test_images.astype(float64)/255
 
 train_lables = to_categorical(train_labels)
 test_labels = to_categorical(test_labels)
+
+model.compile(optimizer = 'rmsprop', loss = 'categorical_crossentropy', metrics = ['accuracy'])
+model.fit(train_images, train_labels, epochs = 5, batch_size = 64)
+
+test_loss, test_accuracy = model.evaluate(test_images, test_labels)
