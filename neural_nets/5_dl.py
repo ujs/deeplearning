@@ -1,4 +1,4 @@
-#Naive CNN
+#Naive CNN MNIST DATA
 
 from keras import layers
 from keras import models
@@ -39,3 +39,9 @@ model.compile(optimizer = 'rmsprop', loss = 'categorical_crossentropy', metrics 
 model.fit(train_images, train_labels, epochs = 5, batch_size = 64)
 
 test_loss, test_accuracy = model.evaluate(test_images, test_labels)
+
+
+
+##################################################################################################################################
+
+#Cat and Dog data CNN
