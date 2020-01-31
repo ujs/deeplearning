@@ -1,11 +1,13 @@
-#Word level one hot encoding
+
 
 import numpy as np
 import string
 
-samples =  ['the cat went for a walk', 'the dog ate my burger']
+#Word level one hot encoding
 
-max_len = 10
+samples =  ['the cat is on the run went for a walk', 'the dog ate my burger']
+
+max_len = 25
 
 def tokenization(samples):
     token_dict = {}
@@ -29,7 +31,7 @@ def one_hot_encoding(samples, max_len):
     for i,sample in enumerate(samples):
         for j, token in enumerate(sample.split()):
             index = token_dict[token]
-            print(index)
+            
             encoded[i][j][index] = 1 
 
 
