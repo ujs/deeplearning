@@ -12,9 +12,9 @@ max_len = 10
 def tokenization(samples):
     token_dict = {}
     for sample in samples:
-        for value, key in enumerate(samples.split(' ')):
+        for word, key in enumerate(sample.split()):
             if key not in token_dict:
-            token_dict[key] = value
+            token_dict[key] = word
     dimensionality = len(token_dict)
 
     return token_dict, dimensionality
@@ -23,19 +23,13 @@ def tokenization(samples):
 
 
 
-def one_hot_encoding(samples, dimensionality, max_len):
+def one_hot_encoding(samples, max_len):
 
+    token_dict, dimensionality = tokenization(samples)
     encoded = np.zeros((len(samples),max_len, dimensionality))
 
+    for sample in samples:
+        for token in
 
 
-    dict = {}
-
-    for value, key in enumerate(X):
-        dict[key] = value
-
-    for i in encoded[:]:
-
-        one_hot = dict[i]
-        encoded[i][one_hot] = 1
     return encoded
