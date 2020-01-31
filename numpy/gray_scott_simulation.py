@@ -21,3 +21,38 @@ dtype = [('U',np.double),('V',np.double)]
 grid = np.zeros((n+2,n+2), dtype)
 
 U,V = grid['U'], grid['V']
+
+u,v = U[1:-1][1:-1], V[1:-1][1:-1]
+
+r = 10
+
+u[...] = 1
+
+U[n//2-r:n//2+r, n//2-r:n//2+r] = 0.50
+V[n//2-r:n//2+r, n//2-r:n//2+r] = 0.25
+u += 0.05*np.random.uniform(-1, +1, (n, n))
+v += 0.05*np.random.uniform(-1, +1, (n, n))
+
+
+def update(frame):
+    global U, V, u, v, im
+
+    for i in range(10):
+        Lu = laplacian(U)
+        Lv = laplacian(V)
+        uvv = u*v*v
+        u += (Du*Lu - uvv + F*(1-u))
+        v += (Dv*Lv + uvv - (F+k)*v)
+
+    im.set_data(V)
+    im.set_clim(vmin=V.min(), vmax=V.max())
+
+fig = plt.figure(figsize=(4, 4))
+fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False)
+im = plt.imshow(V, interpolation='bicubic', cmap=plt.cm.viridis)
+plt.xticks([]), plt.yticks([])
+animation = FuncAnimation(fig, update, interval=10, frames=2000)
+# animation.save('gray-scott-1.mp4', fps=40, dpi=80, bitrate=-1, codec="libx264",
+#                extra_args=['-pix_fmt', 'yuv420p'],
+#                metadata={'artist':'Nicolas P. Rougier'})
+plt.show()
