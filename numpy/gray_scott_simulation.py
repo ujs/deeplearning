@@ -1,4 +1,5 @@
-
+#Gray Scott equations model diffusion reaction between chemical species.
+#The set up of the initial state and parameters given in this paper- http://www.staff.science.uu.nl/~frank011/Classes/complexity/Literature/Pearson.pdf
 # -----------------------------------------------------------------------------
 import numpy as np
 import matplotlib.pyplot as plt
