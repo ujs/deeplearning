@@ -5,16 +5,14 @@ import string
 
 samples =  ['the cat went for a walk', 'the dog ate my burger']
 
-
-
 max_len = 10
 
 def tokenization(samples):
     token_dict = {}
     for sample in samples:
-        for value, word in enumerate(sample.split()):
-            if key not in token_dict:
-            token_dict[word] = value
+        for word in sample.split():
+            if word not in token_dict:
+                token_dict[word] = len(token_dict)
     dimensionality = len(token_dict)
 
     return token_dict, dimensionality
@@ -28,9 +26,11 @@ def one_hot_encoding(samples, max_len):
     token_dict, dimensionality = tokenization(samples)
     encoded = np.zeros((len(samples),max_len, dimensionality))
 
-    for sample in samples:
-        for token in sample:
-            encoded[sample][token] = token_dict[token]
+    for i,sample in enumerate(samples):
+        for j, token in enumerate(sample.split()):
+            index = token_dict[token]
+            print(index)
+            encoded[i][j][index] = 1 
 
 
     return encoded
