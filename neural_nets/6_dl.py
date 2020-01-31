@@ -3,16 +3,20 @@
 import numpy as np
 
 X=  'the cat sat on the mat'
-encoded = np.zeros((len(X),6))
 
-space_size = 6
+def one_hot_encoding(X, spa):
 
-dict = {}
+    encoded = np.zeros((len(X),6))
 
-for value, key in enumerate(X):
-    dict[key] = value
+    dimensionality  = 1000
 
-for i in encoded[:]:
+    dict = {}
 
-    one_hot = dict[i]
-    encoded[i][one_hot] = 1
+    for value, key in enumerate(X):
+        dict[key] = value
+
+    for i in encoded[:]:
+
+        one_hot = dict[i]
+        encoded[i][one_hot] = 1
+    return encoded
