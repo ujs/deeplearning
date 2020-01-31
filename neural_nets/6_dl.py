@@ -34,5 +34,6 @@ def one_hot_encoding(samples, max_len):
             
             encoded[i][j][index] = 1 
 
-
     return encoded
+
+#
