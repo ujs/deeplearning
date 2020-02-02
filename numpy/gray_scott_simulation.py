@@ -51,7 +51,7 @@ def update(frame):
 fig = plt.figure(figsize=(4, 4))
 fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False)
 im_v = plt.imshow(V, interpolation='bicubic', cmap=plt.cm.viridis)
-im_u = plt.imshow(U, interpolation='bicubic', cmap=plt.cm.viridis)
+
 plt.xticks([]), plt.yticks([])
 animation = FuncAnimation(fig, update, interval=10, frames=2000)
 # animation.save('gray-scott-1.mp4', fps=40, dpi=80, bitrate=-1, codec="libx264",
