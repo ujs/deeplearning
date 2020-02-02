@@ -22,9 +22,10 @@ Du, Dv, F, k = 0.16, 0.08, 0.054, 0.063  # Worms 2
 #Du, Dv, F, k = 0.16, 0.08, 0.035, 0.060  # Zebrafish
 
 
-Z = np.zeros((n+2, n+2), [('U', np.double),
-                          ('V', np.double)])
-U, V = Z['U'], Z['V']
+U = np.zeros((n+2, n+2), dtype = np.double)
+V = np.zeros((n+2, n+2), dtype = np.double)
+
+# U, V = Z['U'], Z['V']
 u, v = U[1:-1, 1:-1], V[1:-1, 1:-1]
 
 r = 100
@@ -49,7 +50,8 @@ def update(frame):
 
 fig = plt.figure(figsize=(4, 4))
 fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False)
-im = plt.imshow(V, interpolation='bicubic', cmap=plt.cm.viridis)
+im_v = plt.imshow(V, interpolation='bicubic', cmap=plt.cm.viridis)
+im_u = plt.imshow(U, interpolation='bicubic', cmap=plt.cm.viridis)
 plt.xticks([]), plt.yticks([])
 animation = FuncAnimation(fig, update, interval=10, frames=2000)
 # animation.save('gray-scott-1.mp4', fps=40, dpi=80, bitrate=-1, codec="libx264",
