@@ -50,3 +50,16 @@ max_len = 20
 
 x_train = preprocessing.sequence.pad_sequences(x_train, maxlen = max_len)
 x_test = preprocessing.sequence.pad_sequences(x_test, maxlen = max_len)
+
+#IMDB example- extracting labels and reviews into lists
+
+import os
+
+root_path = ....
+train_dir = os.path.join(root_path, 'train')
+
+
+
+for type in ['neg','pos']
+
+for review in
