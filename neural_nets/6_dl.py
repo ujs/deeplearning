@@ -57,9 +57,15 @@ import os
 
 root_path = ....
 train_dir = os.path.join(root_path, 'train')
+labels, texts = [],[]
 
-
-
-for type in ['neg','pos']
-
-for review in
+for type in ['neg','pos']:
+    dir_name= os.path.join(train_dir,type)
+    for fname in os.listdir(dir_name):
+        if fname[-4:] = 'txt':
+            f = open(os.join.path(dir_name,fname))
+            text.append(f.read())
+            f.close()
+            if type == 'neg':
+                labels.append(0)
+            else: labels.append(1)
