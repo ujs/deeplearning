@@ -39,3 +39,11 @@ def one_hot_encoding(samples, max_len):
 #Word embedding
 from keras.layers import Embedding
 embedding_layer = Embedding(1000,64)
+
+from keras.datasets import imdb
+from keras import preprocessing
+
+max_features = 1000
+max_len = 20
+
+(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features)
