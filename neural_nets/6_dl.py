@@ -31,9 +31,11 @@ def one_hot_encoding(samples, max_len):
     for i,sample in enumerate(samples):
         for j, token in enumerate(sample.split()):
             index = token_dict[token]
-            
-            encoded[i][j][index] = 1 
+
+            encoded[i][j][index] = 1
 
     return encoded
 
-#
+#Word embedding
+from keras.layers import Embedding
+embedding_layer = Embedding(1000,64)
