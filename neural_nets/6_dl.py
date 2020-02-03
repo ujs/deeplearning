@@ -47,3 +47,6 @@ max_features = 1000
 max_len = 20
 
 (x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features)
+
+x_train = preprocessing.sequence.pad_sequences(x_train, maxlen = max_len)
+x_test = preprocessing.sequence.pad_sequences(x_test, maxlen = max_len)
