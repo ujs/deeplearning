@@ -69,3 +69,5 @@ for type in ['neg','pos']:
             if type == 'neg':
                 labels.append(0)
             else: labels.append(1)
+
+#Using pretrained embeddings- example Glove
