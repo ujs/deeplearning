@@ -71,3 +71,18 @@ for type in ['neg','pos']:
             else: labels.append(1)
 
 #Using pretrained embeddings- example Glove
+
+#parsing the data in the form of a dictionary (key is word, value is an array with vector components)
+glove_dir = os.join.path (root_path, 'glove.6B')
+
+
+f= open(os.join.path(glove_dir, 'glove.6B.100d.txt'))
+embeddings = {}
+
+for line in f:
+    values = line.split()
+    word = values[0]
+    vector_values = np.asarray(vallues[1:], dtype = 'float32')
+    embeddings[word] = vector_values
+
+f.close()
