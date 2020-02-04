@@ -20,9 +20,6 @@ def tokenization(samples):
     return token_dict, dimensionality
 
 
-
-
-
 def one_hot_encoding(samples, max_len):
 
     token_dict, dimensionality = tokenization(samples)
@@ -36,53 +33,11 @@ def one_hot_encoding(samples, max_len):
 
     return encoded
 
-#Word embedding
-from keras.layers import Embedding
-embedding_layer = Embedding(1000,64)
 
-from keras.datasets import imdb
-from keras import preprocessing
+# Using RNNs basic pseudocode
 
-max_features = 1000
-max_len = 20
+state_t = 0  #initial state of the system
 
-(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features)
-
-x_train = preprocessing.sequence.pad_sequences(x_train, maxlen = max_len)
-x_test = preprocessing.sequence.pad_sequences(x_test, maxlen = max_len)
-
-#IMDB example- extracting labels and reviews into lists
-
-import os
-
-root_path = ....
-train_dir = os.path.join(root_path, 'train')
-labels, texts = [],[]
-
-for type in ['neg','pos']:
-    dir_name= os.path.join(train_dir,type)
-    for fname in os.listdir(dir_name):
-        if fname[-4:] = 'txt':
-            f = open(os.join.path(dir_name,fname))
-            text.append(f.read())
-            f.close()
-            if type == 'neg':
-                labels.append(0)
-            else: labels.append(1)
-
-#Using pretrained embeddings- example Glove
-
-#parsing the data in the form of a dictionary (key is word, value is an array with vector components)
-glove_dir = os.join.path (root_path, 'glove.6B')
-
-
-f= open(os.join.path(glove_dir, 'glove.6B.100d.txt'))
-embeddings = {}
-
-for line in f:
-    values = line.split()
-    word = values[0]
-    vector_values = np.asarray(vallues[1:], dtype = 'float32')
-    embeddings[word] = vector_values
-
-f.close()
+for input_t in input_seq:
+    output_state = f(input_seq, state_t)  #instead of feeding entire input to neural net, we feed states
+    state_t = output_state
