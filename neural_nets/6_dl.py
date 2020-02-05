@@ -34,4 +34,10 @@ def one_hot_encoding(samples, max_len):
     return encoded
 
 
-#temp data parsing
+# Using RNNs basic pseudocode
+
+state_t = 0  #initial state of the system
+
+for input_t in input_seq:
+    output_state = f(input_seq, state_t)  #instead of feeding entire input to neural net, we feed states
+    state_t = output_state
