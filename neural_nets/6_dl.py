@@ -34,4 +34,4 @@ def one_hot_encoding(samples, max_len):
     return encoded
 
 
-#
+#temp data parsing
