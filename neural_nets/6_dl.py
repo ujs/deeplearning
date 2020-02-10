@@ -34,4 +34,9 @@ def one_hot_encoding(samples, max_len):
     return encoded
 
 
-# Using RNNs basic pseudocode
+# Normalizing data - n samples(rows), m attributes(columns)
+
+mean = data[:].mean(axis = 0) #columnwise mean in matrix form
+data -= data- mean
+std = data[:].std(axis = 0)
+data /= std
