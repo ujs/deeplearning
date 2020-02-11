@@ -7,4 +7,17 @@ def mandelbrot(z, iterations, horizon = 2.0, xmin, xmax, ymin, ymax,xn,yn):
 
     C= real +imaginary[:,None] * 1j
 
-    Z = np.zeros(C.shape, dtype = complex)
+    N = np.zeros(C.shape,dytpe = int)
+
+
+    Z = np.zeros(C.shape, np.complex64)
+
+    for n in range(iterations):
+        I = np.less(abs(Z),horizon)
+        N[I] = n
+        Z[I] = Z[I]**2 + C[I]
+    N[N == maxiter-1] = 0
+
+
+
+    return Z,N
