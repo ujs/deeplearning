@@ -1,13 +1,13 @@
 # x refers to real part , y refers to imaginary part
 
-def mandelbrot(z, iterations, horizon = 2.0, xmin, xmax, ymin, ymax,xn,yn):
+def mandelbrot(iterations,xmin, xmax, ymin, ymax,xn,yn, horizon = 2.0):
 
     real = np.linspace(xmin,xmax,xn, dtype = np.float32)
     imaginary = np.linspace(ymin,ymax,yn, dtype = np.float32)
 
     C= real +imaginary[:,None] * 1j
 
-    N = np.zeros(C.shape,dytpe = int)
+    N = np.zeros(C.shape,np.int64)
 
 
     Z = np.zeros(C.shape, np.complex64)
@@ -20,4 +20,4 @@ def mandelbrot(z, iterations, horizon = 2.0, xmin, xmax, ymin, ymax,xn,yn):
 
 
 
-    return Z,N
+    return Z.shape, N.shape
