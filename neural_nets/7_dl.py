@@ -4,8 +4,8 @@ input_tensor = Input(shape= (64,))
 
 #instead of using sequential linear layers (.add), use a variable to save layer as a function
 
-dense_1 = layers.Dense(32,activation ='relu')
-dense_2 = layers.Dense(32, activation ='relu')
-dense_3 = layers.Dense(10, activation ='softmax')
+x = layers.Dense(32,activation ='relu')(input_tensor)
+x = layers.Dense(32, activation ='relu')(x)
+output_tensor = layers.Dense(10, activation ='softmax')(x)
 
-output_tensor(dense_3(dense_2(dense_1(input_tensor))))
+model = Model(input_tensor, output_tensor)  #instatiating a model. like magic- behind the scenes, keras retrives the flow from input to output via layers
