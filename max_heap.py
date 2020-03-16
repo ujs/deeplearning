@@ -1,3 +1,15 @@
+def max_heapify(A,i):
+    '''to hangle single violation only'''
+    l = (i*2)+1
+    r = (i+1)*2
+    largest = i
+    if l < len(A) and A[l]>A[i]:
+        largest = l
+    if r < len(A) and A[r]>A[l]:
+        largest = r
+    if largest != i:
+        A[i], A[largest] = A[largest], A[i]
+        max_heapify(A,largest)
 
 
 
